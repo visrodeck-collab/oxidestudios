@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Oxide Studios — Originals & Creative Services</title>
 
-  <!-- TailwindCSS -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
@@ -14,11 +14,11 @@
   <style>
     :root {
       --accent-yellow: #f2c017;
-      --bg-black: #050506;
     }
 
     body {
-      background: linear-gradient(180deg, #050406 0%, #0b0b0d 60%);
+      background: linear-gradient(180deg, #050406 0%, #0b0b0d 70%);
+      color: #f5f5f5;
     }
 
     .oxide-logo {
@@ -35,33 +35,55 @@
 
     .glass-nav {
       backdrop-filter: blur(6px) saturate(120%);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    }
-
-    .card-glow:hover {
-      box-shadow: 0 10px 30px rgba(242,192,23,0.08), 0 2px 6px rgba(0,0,0,0.6);
-      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .cinema-title {
       text-transform: uppercase;
-      letter-spacing: -0.02em;
       font-weight: 800;
-      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+      line-height: 0.9;
+      text-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
     }
 
-    /* Countdown styling */
+    .card-glow:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    /* countdown styling */
     .countdown-glow {
       font-family: 'Courier New', monospace;
-      font-size: 2.4rem;
-      letter-spacing: 0.08em;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);
+      font-size: 2.8rem;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.5), 0 0 50px rgba(255, 255, 255, 0.25);
       animation: pulse 2.5s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; text-shadow: 0 0 15px rgba(255,255,255,0.6); }
-      50% { opacity: 0.8; text-shadow: 0 0 25px rgba(255,255,255,0.9); }
+      0%, 100% { opacity: 1; text-shadow: 0 0 25px rgba(255,255,255,0.6); }
+      50% { opacity: 0.8; text-shadow: 0 0 40px rgba(255,255,255,0.9); }
+    }
+
+    /* launch glow effect */
+    .launch-glow::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 4s ease-in-out infinite;
+      z-index: 0;
+      filter: blur(25px);
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
     }
 
     .scroll-indicator {
@@ -75,18 +97,17 @@
     }
   </style>
 </head>
-<body class="text-slate-100 antialiased">
+
+<body class="antialiased">
   <!-- NAV -->
   <header class="fixed inset-x-0 top-4 z-50">
     <div class="max-w-6xl mx-auto px-5">
       <nav class="glass-nav border border-zinc-800 rounded-2xl px-4 py-3 flex items-center justify-between shadow-sm">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-black/60 flex items-center justify-center border border-zinc-800">
-            <img src="./studio template (4).png" alt="Oxide logo" class="oxide-logo" />
-          </div>
-          <div class="hidden sm:block">
-            <div class="text-sm font-semibold">OXIDE STUDIOS</div>
-            <div class="text-[11px] text-zinc-400">Originals • Design • Prototypes</div>
+          <img src="./studio template (4).png" alt="Oxide Studios Logo" class="oxide-logo w-10 h-10" />
+          <div>
+            <div class="font-semibold text-sm">OXIDE STUDIOS</div>
+            <div class="text-xs text-zinc-400">Originals • Design • Prototypes</div>
           </div>
         </div>
         <div class="hidden md:flex items-center gap-6 text-sm text-zinc-300">
@@ -100,43 +121,52 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-5 pt-36 pb-24">
-    <!-- HERO -->
-    <section class="grid md:grid-cols-2 gap-10 items-center mt-6">
+  <!-- HERO -->
+  <main class="max-w-6xl mx-auto px-5 pt-40 pb-20">
+    <section class="grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h2 class="cinema-title text-5xl md:text-6xl font-extrabold leading-tight" data-aos="fade-right">We Create.<br>Design.<br>Build.</h2>
-        <p class="mt-4 text-lg text-zinc-300" data-aos="fade-up" data-aos-delay="200">
-          Oxide Studios crafts original stories, cinematic art, and technical prototypes — from manga typesetting and illustration to PCB design and 3D modeling.
+        <h1 class="cinema-title text-5xl md:text-6xl" data-aos="fade-right">We Create.<br>Design.<br>Build.</h1>
+        <p class="mt-5 text-zinc-300" data-aos="fade-up" data-aos-delay="200">
+          Oxide Studios crafts original stories, art, and prototypes — from manga typesetting and 3D modeling to PCB design and animation.
         </p>
       </div>
-      <div class="flex justify-center" data-aos="fade-up">
-        <img src="./studio template (4).png" alt="Oxide Studios Logo" class="oxide-logo rounded-xl shadow-2xl">
+      <div class="flex justify-center" data-aos="zoom-in">
+        <img src="./studio template (4).png" alt="Oxide Logo" class="oxide-logo rounded-xl shadow-2xl">
       </div>
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="mt-20" data-aos="fade-up">
-      <h3 class="text-2xl font-bold">What we do</h3>
-      <p class="text-sm text-zinc-400">Creative, technical and publishing support for creators, teams and projects.</p>
+    <section id="services" class="mt-24" data-aos="fade-up">
+      <h3 class="text-2xl font-bold mb-2">What We Do</h3>
+      <p class="text-sm text-zinc-400">Design, illustration, PCB, modeling, and creative content — all under one roof.</p>
     </section>
 
     <!-- PORTFOLIO -->
-    <section id="portfolio" class="mt-20" data-aos="fade-up">
-      <h3 class="text-2xl font-bold">Portfolio</h3>
-      <p class="text-sm text-zinc-400">A few glimpses of what we’ve built, illustrated, or designed.</p>
+    <section id="portfolio" class="mt-24" data-aos="fade-up">
+      <h3 class="text-2xl font-bold mb-2">Portfolio</h3>
+      <p class="text-sm text-zinc-400">Recent work and prototypes — from Dusk Blade to Visrodeck.</p>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="p-4 bg-zinc-900/40 rounded-2xl border border-zinc-800 card-glow">
+          <img src="./WhatsApp_Image_2025-09-25_at_11.20.39_AM_upscaled.jpeg" alt="Dusk Blade Poster" class="rounded-lg w-full h-44 object-cover mb-3">
+          <h4 class="font-semibold">Dusk Blade — ₹499</h4>
+          <p class="text-sm text-zinc-400 mt-1">Action series by Oxide Originals. Now on sale.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- VISRODECK (HIGHLIGHTED) -->
-    <section id="visrodeck" class="mt-24 py-20 text-center border border-zinc-800 rounded-2xl bg-gradient-to-b from-black via-zinc-900 to-black shadow-lg" data-aos="zoom-in">
-      <div class="max-w-2xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">Visrodeck</h2>
-        <p class="text-zinc-400 text-base mb-8">A collaborative environment for students, teachers and researchers to share prototypes, learn and grow.</p>
+    <!-- VISRODECK BIG COUNTDOWN -->
+    <section id="visrodeck" class="relative mt-32 py-24 text-center border border-zinc-800 rounded-2xl bg-gradient-to-b from-black via-zinc-900 to-black shadow-xl" data-aos="zoom-in">
+      <div class="launch-glow relative z-10">
+        <h2 class="text-5xl md:text-6xl font-bold mb-6">Visrodeck</h2>
+        <p class="text-zinc-400 mb-10 text-base md:text-lg max-w-2xl mx-auto">
+          A collaborative environment for students, teachers and researchers to share prototypes, learn and grow.
+        </p>
 
-        <div class="countdown-glow" id="countdown">Loading...</div>
+        <div id="countdown" class="countdown-glow mb-3">Loading...</div>
+        <div class="text-sm text-zinc-400 mb-10">Launching <span class="text-white font-semibold">January 2026</span></div>
 
-        <div class="mt-3 text-sm text-zinc-400">Launching <span class="text-white font-semibold">January 2026</span></div>
-
-        <div class="mt-10 flex justify-center gap-4">
+        <div class="flex flex-wrap justify-center gap-4">
           <a href="https://visrodeck.com" class="px-6 py-3 bg-white text-black font-semibold rounded-md shadow hover:scale-[1.02] transition">Visit Visrodeck</a>
           <a href="#contact" class="px-6 py-3 border border-zinc-600 rounded-md hover:border-white transition">Collaborate</a>
         </div>
@@ -144,14 +174,15 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="mt-24 grid md:grid-cols-2 gap-8" data-aos="fade-up">
+    <section id="contact" class="mt-28 grid md:grid-cols-2 gap-8" data-aos="fade-up">
       <div class="p-6 rounded-2xl bg-black/40 border border-zinc-800">
-        <h3 class="text-xl font-bold">Get in touch</h3>
+        <h3 class="text-xl font-bold">Get in Touch</h3>
         <p class="text-sm text-zinc-400 mt-2">
-          Send us a message or request a quote — we’ll respond via <b>workforemty@gmail.com</b>.
+          Send us a message or request a quote — we’ll respond from <b>workforemty@gmail.com</b>.
         </p>
       </div>
-      <form class="p-6 rounded-2xl bg-black/30 border border-zinc-800" onsubmit="submitQuote(event)">
+
+      <form onsubmit="submitQuote(event)" class="p-6 rounded-2xl bg-black/30 border border-zinc-800">
         <h4 class="font-semibold mb-3">Quick Message</h4>
         <input id="name" class="w-full mb-3 p-2 rounded bg-zinc-900 border border-zinc-800 text-zinc-200" placeholder="Your name" required>
         <input id="email" type="email" class="w-full mb-3 p-2 rounded bg-zinc-900 border border-zinc-800 text-zinc-200" placeholder="you@example.com" required>
@@ -159,12 +190,13 @@
         <button type="submit" class="px-4 py-2 bg-white text-black rounded font-semibold">Send</button>
       </form>
     </section>
+
+    <footer class="mt-20 py-8 text-center text-sm text-zinc-500">
+      © 2024 Oxide Studios — All Rights Reserved
+    </footer>
   </main>
 
-  <footer class="mt-20 py-8 text-sm text-zinc-500 text-center">
-    © 2024 Oxide Studios — All Rights Reserved
-  </footer>
-
+  <!-- Scripts -->
   <script>
     AOS.init({ once: true });
 
@@ -192,7 +224,7 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Form mailto
+    // Form → mailto
     function submitQuote(e) {
       e.preventDefault();
       const name = document.getElementById("name").value;
